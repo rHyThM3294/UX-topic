@@ -57,7 +57,7 @@ function initHomePageAnimations(){
         const oldEl = document.getElementById(currentChooseId);
         const newEl = document.getElementById(newId);
 
-        if (!oldEl || !newEl) return;
+        if(!oldEl || !newEl)return;
 
         // 移除舊選項 active 並隱藏
         oldEl.classList.remove("active");
@@ -68,7 +68,7 @@ function initHomePageAnimations(){
         newEl.classList.add("active");
         currentChooseId = newId;
         const newTitle = newEl.querySelector(".title");
-        if (newTitle) {
+        if (newTitle){
             newTitle.classList.add("show");     // 後續題目繼續顯示
         }
     }
@@ -88,11 +88,11 @@ function initHomePageAnimations(){
     });
 
     // 返回按鈕事件
-    document.getElementById('back2').addEventListener("click", () => {
-        showChoose('ch1');
+    document.getElementById("back2").addEventListener("click", () => {
+        showChoose("ch1");
     });
-    document.getElementById('back3').addEventListener("click", () => {
-        showChoose('ch1');
+    document.getElementById("back3").addEventListener("click", () => {
+        showChoose("ch1");
     });
 
     // ch2 跳轉頁面
@@ -111,10 +111,10 @@ function initHomePageAnimations(){
         }
     });
     // ch3 跳轉頁面
-    const ch3Buttons = document.querySelectorAll('#ch3 .word');
+    const ch3Buttons = document.querySelectorAll("#ch3 .word");
     ch3Buttons.forEach((button, i) => {
         if (i < 4){
-            button.addEventListener('click', () => {
+            button.addEventListener("click", () => {
                 const pages = [
                     'page2-1.html',
                     'page2-2.html',
@@ -168,7 +168,7 @@ function initSearch(){
     });
 
     // 監聽 Enter 按鍵
-    searchInput.addEventListener("keydown", function (ent) {
+    searchInput.addEventListener("keydown", function(ent){
         if(ent.key === "Enter"){
             ent.preventDefault();
             performSearch();
@@ -178,7 +178,7 @@ function initSearch(){
     // 搜尋邏輯抽出來
     function performSearch(){
         const keyword = searchInput.value.trim().toLowerCase();
-        if (keyword) {
+        if(keyword){
             if(keywordAll[keyword]){
                 window.location.href = keywordAll[keyword];
             }else{
@@ -252,7 +252,7 @@ function initFuture(){
         }
     }
 
-    function showResult(id) {
+    function showResult(id){
         document.querySelectorAll(".result").forEach(r => r.classList.remove("active"));
         const result = document.getElementById(id);
         if(result)result.classList.add("active");
@@ -268,8 +268,8 @@ function initFuture(){
     const q1Buttons = document.querySelectorAll("#q1 .answer");
     q1Buttons.forEach((button, j) => {
         button.addEventListener("click", () => {
-            if (j === 0) showStep("q2");
-            else if (j === 1) showStep("q3");
+            if(j === 0)showStep("q2");
+            else if(j === 1)showStep("q3");
         });
     });
     // 返回按鈕
@@ -329,10 +329,10 @@ function initAsideButtons(){
 // 至頂按鈕
 function initGoTop(){
     const goTop = document.getElementsByClassName("goTop")[0];
-    if (!goTop) return;
+    if(!goTop)return;
 
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 150){
+        if(window.scrollY > 150){
             goTop.classList.add("show");
         }else{
             goTop.classList.remove("show");
@@ -358,7 +358,7 @@ function initDropdown(){
     });
 
     // 2. 裝置寬度 < 768px 判讀為click，其餘是hover
-    function setupMenuEvents() {
+    function setupMenuEvents(){
         const isMobile = window.innerWidth < 768;
 
         dropdowns.forEach(dropdown => {
@@ -374,18 +374,18 @@ function initDropdown(){
         newDropdowns.forEach(dropdown => {
             const menu = dropdown.querySelector(".dropdownMenu");
             const trigger = dropdown.querySelector("a");
-            if (isMobile) {
+            if(isMobile){
                 // 行動裝置 → 點擊開合
-                trigger.addEventListener("click", function (e){
+                trigger.addEventListener("click", function(e){
                     e.preventDefault(); // 阻止連結跳轉
                     menu.classList.toggle("show");
                 });
-            } else {
+            }else{
                 // Web版 → hover進去出來來控制開闔
-                dropdown.addEventListener("mouseenter", function (){
+                dropdown.addEventListener("mouseenter", function(){
                     menu.classList.add("show");
                 });
-                dropdown.addEventListener("mouseleave", function (){
+                dropdown.addEventListener("mouseleave", function(){
                     menu.classList.remove("show");
                 });
             }
@@ -399,9 +399,9 @@ function initDropdown(){
 // page2-2的轉職量表
 function initPage2for2(){
     const sentButton = document.querySelector(".sent");
-    if (!sentButton) return;
+    if(!sentButton)return;
 
-    sentButton.addEventListener("click", function (){
+    sentButton.addEventListener("click", function(){
         const score1 = parseInt(document.getElementById("score1").value, 10);
         const score2 = parseInt(document.getElementById("score2").value, 10);
         const learn = document.querySelector("input[name='learn']:checked");
@@ -428,7 +428,7 @@ function initPage2for2(){
         const total = score1 + score2 + parseInt(learn.value, 10) + parseInt(apply.value, 10);
         // 顯示結果
         let comment = "";
-        if(total >= 8) {
+        if(total >= 8){
             comment = "你對這份工作整體滿意度還算不錯，可以繼續深耕！";
         }else{
             comment = "或許是時候思考是否該往下一個目標邁進了。";
@@ -586,14 +586,14 @@ function initNextPage(){
 
         // 左右按鈕功能
         section.querySelector(".moveLeft").addEventListener("click", () => {
-            if (currentIndex > 0) {
+            if (currentIndex > 0){
                 currentIndex--;
                 updateTransform();
             }
         });
 
         section.querySelector(".moveRight").addEventListener("click", () => {
-            if (currentIndex < totalImages - 1) {
+            if(currentIndex < totalImages - 1){
                 currentIndex++;
                 updateTransform();
             }
@@ -613,9 +613,9 @@ function initNextPage(){
 
         change.addEventListener("touchend", () => {
             const diff = startX - endX;
-            if (diff > 50 && currentIndex < totalImages - 1) {
+            if(diff > 50 && currentIndex < totalImages - 1){
                 currentIndex++;
-            } else if (diff < -50 && currentIndex > 0) {
+            }else if(diff < -50 && currentIndex > 0){
                 currentIndex--;
             }
             updateTransform();
@@ -698,7 +698,7 @@ function initNow(){
 
         container.appendChild(timeElem);
 
-        if(sender === "user" && status) {
+        if(sender === "user" && status){
             const statusElem = document.createElement("div");
             statusElem.className = "status";
             statusElem.textContent = status;
