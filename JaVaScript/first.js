@@ -746,9 +746,8 @@ function initNow() {
         } else if (message.includes("我要幫助")) {
             const replies = [
                 "了解，你需要幫助。",
-                "這裡有一些資源可以協助你。",
-                "你可以點這個連結：",
-                "https://help.example.com"
+                "但我不知道該如何幫助你",
+                "請你自己保重"
             ];
             replies.forEach((text, index) => {
                 setTimeout(() => appendMessage("bot", text, replyTime), 1000 + index * 1000);

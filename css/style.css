@@ -892,6 +892,10 @@ button.answer.show-answer {
     text-align: center;
 }
 /* 即時回答 */
+h2.answerForYou{
+    text-align: center;
+    padding: 2em 0;
+}
 .chatbox {
     position: relative;
     margin: 1em auto;
