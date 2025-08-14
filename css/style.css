@@ -171,14 +171,16 @@ html,body,header,menu,nav,main,div,span,article,aside,p,a,footer,ul,ol,li,table,
 .capability{
     width: 100%;
     height: 100vh;
-    padding:  16vh 0 0 0;
-    background: url(../img/直式黑板1.jpg);
+    padding: 1em;
+    background: url(../img/直式黑板1.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
     color: var(--darkWord);
     text-align: center;
 }
 
 .capability .boxes{
-    width: 350px;
+    width: 250px;
     position: relative;
     margin: auto;
 }
@@ -580,6 +582,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: none;
     font-size: 1.5em;
     padding: 8px;
+    transition: var(--transition);
     cursor: pointer;
     z-index: 10;
 }
@@ -679,6 +682,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: none;
     font-size: 1.5em;
     padding: 8px;
+    transition: var(--transition);
     cursor: pointer;
     z-index: 10;
 }
@@ -693,14 +697,14 @@ input[type=number]::-webkit-outer-spin-button {
 .careerTitle{
     position: relative;
     margin: auto;
-    padding: 2em 0;
+    padding: 2em;
     font-size: 2em;
     text-align: center;
     color: var(--darkWord);
 }
 .careerWord{
     text-align: center;
-    margin-bottom: 2em;
+    margin: 0 1em 2.6em 1em;
 }
 .lifeline{
     position: relative;
@@ -710,7 +714,7 @@ input[type=number]::-webkit-outer-spin-button {
     transition: var(--transition);
 }
 /* 時間軸主線：手機在左側 */
-.lifeline::before {
+.lifeline::before{
     content: '';
     position: absolute;
     top: 0;
@@ -719,16 +723,16 @@ input[type=number]::-webkit-outer-spin-button {
     width: 4px;
     background: var(--secondColor);
 }
-.lifeline-item {
+.lifeline-item{
     position: relative;
     width: 100%;
     padding-left: 60px;
     margin-bottom: 40px;
     text-align: left;
 }
-.lifeline-item .icon {
+.lifeline-item .icon{
     font-size: 24px;
-    background: white;
+    background:var(--lightWord);
     border: 2px solid var(--secondColor);
     border-radius: 50%;
     width: 40px;
@@ -749,7 +753,7 @@ input[type=number]::-webkit-outer-spin-button {
 .lifeline-item .content {
     display: none;
     margin-top: 10px;
-    background: #fff;
+    background:var(--lightWord);
     padding: 10px;
     border-left: 4px solid var(--secondColor);
     border-radius: 4px;
@@ -772,7 +776,7 @@ input[type=number]::-webkit-outer-spin-button {
 .imitation {
     width: 100%;
     min-height: 100vh;
-    background: url("../img/直視黑板2.jpg");
+    background: url("../img/直式黑板2.jpg");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -782,8 +786,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0 auto;
     padding: 5vh 0.5em 0.5em 0;
 }
-.step,
-.result {
+.step,.result {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -791,7 +794,7 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 1.5em;
     color: var(--backgroundColor);
 }
-.step.active,.result.active {
+.step.active,.result.active{
     display: flex;
 }
 .question {
@@ -809,11 +812,12 @@ input[type=number]::-webkit-outer-spin-button {
     transform: translateY(-10px);
 }
 .questionbox .step {
-    margin-top: 20vh;
+    margin-top: 15vh;
 }
 button.answer {
+    width: 200px;
     margin: 1em;
-    padding: 0.5em 1.5em;
+    padding: 0.8em;
     font-size: 16px;
     background-color: transparent;
     color: var(--backgroundColor);
@@ -841,6 +845,14 @@ button.answer.show-answer {
 .person h2{
     text-align: center;
     color: var(--darkWord);
+}
+.person .agree{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.8em;
+    text-align: justify;
 }
 
 .person .testbox{
@@ -875,10 +887,10 @@ button.answer.show-answer {
     border-radius: 100px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: box-shadow 0.1s ease, transform 0.1s ease; /* 添加平滑過渡效果 */
+    transition: var(--transition);
 }
 .person .allright:hover{
-    box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.3); /* 滑鼠懸停時加強陰影 */
+    box-shadow: 0 6px 7px rgba(0, 0, 0, 0.3); /* 滑鼠懸停時加強陰影 */
 }
 .person .allright:active{
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
@@ -1303,8 +1315,10 @@ footer .down {
     }
     /* reset頁面 */
     .capability {
-        padding: 20vh 1em 0 1em;
-        background: url(../img/黑板1.png);
+        padding: 15vh 1em 0 1em;
+        background: url(../img/黑板1.png) no-repeat;
+        background-size: cover;
+        background-position: center;
         color: var(--lightWord);
         text-align: center;
     }
@@ -1361,6 +1375,14 @@ footer .down {
         transform: translateY(-50%);
         z-index: 10;
     }
+    .prev:hover{
+        color: var(--backgroundColor);
+        background-color: var(--secondColor);
+    }
+    .next:hover{
+        color: var(--backgroundColor);
+        background-color: var(--secondColor);
+    }
     .dots{
         bottom: 10px;
     }
@@ -1375,13 +1397,25 @@ footer .down {
         overflow: hidden;
         width: auto;
     }
+    .psychology .moveLeft:hover{
+        background-color: var(--secondColor);
+        opacity: 1;
+    }
+    .psychology .moveRight:hover{
+        background-color: var(--secondColor);
+        opacity: 1;
+    }
     /* 即時對話 */
     .chatbox{
         max-width: 1000px;
     }
     /* 模擬選擇 */
     #q2,#q3 {
-        margin-top: calc(35vh - 3em);
+        margin-top: 2vh;
+    }
+    button.answer{
+        font-size: 1.2em;
+        width: 280px;
     }
     button.answer:hover{
         border: 1px solid var(--mainColor);
@@ -1412,9 +1446,22 @@ footer .down {
         line-height: 2em;
     }
 
-    .person input{
-        margin: 1em 1.5em;
+    .person .agree {
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        text-align: center;
     }
+    .person .agree .agreeOption{
+        padding: 0 0.7em;
+    }
+
+    .person input{
+        margin: 0 0.4em;
+        padding: 0;
+    }
+    
 
     .person .allright{
         position: relative;

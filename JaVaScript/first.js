@@ -110,7 +110,6 @@ function initHomePageAnimations() {
             });
         }
     });
-
     // ch3 跳轉頁面
     const ch3Buttons = document.querySelectorAll('#ch3 .word');
     ch3Buttons.forEach((button, i) => {
@@ -515,7 +514,6 @@ function initBanner(){
     });
 }
 
-
 // 人格測驗
 function initQuestion() {
     const resultPerson = document.getElementById("resultPerson");
@@ -538,27 +536,27 @@ function initQuestion() {
         let careerType = "";
         let careerComment = "";
 
-        if (totalScore <= 20) {
+        if(totalScore <= 16){
             careerType = "技術職 / 工程領域";
             careerComment = "你邏輯清晰，實作能力強，適合在技術與工程方面深耕發展。";
-        } else if (totalScore <= 30) {
+        }else if(totalScore <= 24){
             careerType = "創意產業 / 設計 / 媒體";
             careerComment = "你富有想像力，重視表達與美感，適合發展創意相關職涯。";
-        } else if (totalScore <= 35) {
+        }else if(totalScore <= 32){
             careerType = "社會服務 / 教育 / 輔導";
             careerComment = "你具有良好的人際敏感度，喜歡助人，是個優秀的溝通者與協調者。";
-        } else {
+        }else{
             careerType = "管理 / 領導 / 創業";
             careerComment = "你有領導潛力與決策力，適合走向管理層或創業之路。";
         }
-        document.getElementById('resultPreson').textContent = `適合職涯方向：${careerType}  ${careerComment}`;
+        document.getElementById("resultPerson").textContent = `適合職涯方向：${careerType}  ${careerComment}`;
     });
 
 }
 
 
 //職涯探索的時間軸
-function initCareer() {
+function initCareer(){
     const items = document.querySelectorAll(".lifeline-item");
     if (!items) return;
     items.forEach(item => {
@@ -566,7 +564,7 @@ function initCareer() {
         const title = item.querySelector(".title");
         [icon, title].forEach(life => {
             life.addEventListener("click", () => {
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 768){
                     item.classList.toggle("active");
                 }
             });
@@ -642,7 +640,7 @@ function initNow() {
         sendMessage();
     });
 
-    // 綁定 Enter 鍵
+    // 監聽 Enter 按鍵
     inputField.addEventListener("keydown", function (k) {
         if (k.key === "Enter") {
             k.preventDefault(); // 避免跳行
@@ -745,7 +743,7 @@ function initNow() {
             });
         } else if (message.includes("我要幫助")) {
             const replies = [
-                "了解，你需要幫助。",
+                "了解，你需要幫助",
                 "但我不知道該如何幫助你",
                 "請你自己保重"
             ];
