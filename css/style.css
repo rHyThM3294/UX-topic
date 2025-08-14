@@ -1127,9 +1127,11 @@ h2.answerForYou{
 }
 /* 參考連結頁面 */
 .reference {
-    width: 100%;
+    width: 90%;
+    max-width: 1440px;
+    position: relative;
+    margin: 1em auto;
     height: 90vh;
-    max-width: 1200px;
     padding: 6em 1em 2em 1em;
 }
 .reference h2 {
@@ -1138,7 +1140,7 @@ h2.answerForYou{
 }
 
 .reference p {
-    width: 90%;
+    width: 100%;
     text-align: justify;
     line-height: 2em;
     color: var(--darkWord);

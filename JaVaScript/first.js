@@ -439,7 +439,7 @@ function initPage2for2(){
 
 function initBanner(){
     const slides = document.querySelector(".slides");
-    if (!slides) return;
+    if (!slides)return;
     const images = document.querySelectorAll(".slides img");
     const prevButton = document.querySelector(".prev");
     const nextButton = document.querySelector(".next");
