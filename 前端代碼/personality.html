@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>破繭 | 相關文章</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body class="mainPage">
+    <header>
+        <div class="container">
+            <div class="logo" onclick="location.href='reset.html'"></div>
+            <div class="icons">
+                <div class="line"><i class="fa-brands fa-line"></i></div>
+                <div class="searchContainer">
+                    <input type="text" id="searchInput" placeholder="搜尋...">
+                    <div class="searchButton"><i class="fa-solid fa-magnifying-glass"></i></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="banner">
+        <div class="slides">
+            <img src="./img/banner1.jpg" alt="圖1">
+            <img src="./img/banner2.jpg" alt="圖2">
+            <img src="./img/banner3.jpg" alt="圖3">
+            <img src="./img/banner4.jpeg" alt="圖4">
+            <img src="./img/banner5.jpg" alt="圖5">
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+        <div class="dots">
+            <span class="dot" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+        </div>
+    </div>
+    <main class="person">
+        <h2>人格測驗</h2>
+        <div class="testbox">
+            <p class="tsetTitle">1.我喜歡與人溝通、協助他人解決問題。</p>
+            <input type="radio" name="no1" value="1">非常不同意
+            <input type="radio" name="no1" value="2">不同意
+            <input type="radio" name="no1" value="3">同意
+            <input type="radio" name="no1" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">2.我對藝術、創意表達有濃厚興趣。</p>
+            <input type="radio" name="no2" value="1">非常不同意
+            <input type="radio" name="no2" value="2">不同意
+            <input type="radio" name="no2" value="3">同意
+            <input type="radio" name="no2" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">3.我擅長邏輯推理與數據分析。</p>
+            <input type="radio" name="no3" value="1">非常不同意
+            <input type="radio" name="no3" value="2">不同意
+            <input type="radio" name="no3" value="3">同意
+            <input type="radio" name="no3" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">4.我能夠領導團隊並組織資源。</p>
+            <input type="radio" name="no4" value="1">非常不同意
+            <input type="radio" name="no4" value="2">不同意
+            <input type="radio" name="no4" value="3">同意
+            <input type="radio" name="no4" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">5.我對學術或研究性工作有興趣。</p>
+            <input type="radio" name="no5" value="1">非常不同意
+            <input type="radio" name="no5" value="2">不同意
+            <input type="radio" name="no5" value="3">同意
+            <input type="radio" name="no5" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">6.我願意承擔風險並創業。</p>
+            <input type="radio" name="no6" value="1">非常不同意
+            <input type="radio" name="no6" value="2">不同意
+            <input type="radio" name="no6" value="3">同意
+            <input type="radio" name="no6" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">7.我喜歡動手操作與機械相關的工作。</p>
+            <input type="radio" name="no7" value="1">非常不同意
+            <input type="radio" name="no7" value="2">不同意
+            <input type="radio" name="no7" value="3">同意
+            <input type="radio" name="no7" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">8.我對行政、文書及流程管理感興趣。</p>
+            <input type="radio" name="no8" value="1">非常不同意
+            <input type="radio" name="no8" value="2">不同意
+            <input type="radio" name="no8" value="3">同意
+            <input type="radio" name="no8" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">9.我能夠在高壓環境下做出判斷。</p>
+            <input type="radio" name="no9" value="1">非常不同意
+            <input type="radio" name="no9" value="2">不同意
+            <input type="radio" name="no9" value="3">同意
+            <input type="radio" name="no9" value="4">非常同意
+        </div>
+        <div class="testbox">
+            <p class="tsetTitle">10.我重視工作與生活的平衡。</p>
+            <input type="radio" name="no10" value="1">非常不同意
+            <input type="radio" name="no10" value="2">不同意
+            <input type="radio" name="no10" value="3">同意
+            <input type="radio" name="no10" value="4">非常同意
+        </div>
+        <button class="allright">我填完了</button>
+        <div id="resultPerson"></div>
+    </main>
+    <div class="asideBlock">
+        <div class="asideButtons">
+            <ul>
+                <li><a href="./index.html">想要重選</a></li>
+                <li><a href="./career.html">職涯探索</a></li>
+                <li class="dropdown dropdown1">
+                    <p>◄只看....</p>
+                    <ul class="dropdownMenu dropdownMenu1">
+                        <li><a href="./writing.html">只看文章</a></li>
+                        <li><a href="./video.html">只看影片</a></li>
+                        <li><a href="./caricature.html">只看漫畫</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown dropdown2">
+                    <p>◄其他功能</p>
+                    <ul class="dropdownMenu dropdownMenu2">
+                        <li><a href="./conversation.html">分享天地</a></li>
+                        <li><a href="./answerNow.html">即時問答</a></li>
+                        <li><a href="./personality.html">人格測驗</a></li>
+                        <li><a href="./futureChoose.html">模擬選擇</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <button class="asideButton">
+            <i class="fa-solid fa-ellipsis"></i>
+        </button>
+    </div>
+    <button class="goTop"><i class="fa-solid fa-arrow-up"></i></button>
+    <footer>
+        <div class="up">
+            <p><a href="./reference.html">參考連結</a></p>
+            <p>投稿文章與影片</p>
+            <p>106臺北市大安區復興南路一段390號2樓</p>
+            <p>(02)6631-6588</p>
+        </div>
+        <div class="down">
+            Copyright © 2025 作品用 All rights reserved.版權所有© 賴威廷
+        </div>
+    </footer>
+</body>
+
+</html>
+<script src="./JaVaScript/first.js"></script>
+<script src="./JaVaScript/third.js"></script>

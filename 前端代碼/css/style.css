@@ -1,0 +1,1523 @@
+html,body,header,menu,nav,main,div,span,article,aside,p,a,footer,ul,ol,li,table,tr,td,th,b,i,u,img {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    color: inherit;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    /*
+        bread的z-index:34
+        header的z-index:35
+        goTop的z-index:30
+        asideButton的z-index:30
+        值日生的z-index:15
+        choose的z-index:2
+        h2用在每一頁的次標題
+        h3用在每個內文的大標題
+        h4
+        h5
+        h6
+
+     */
+
+    --backgroundColor: #FFDEB9;
+    --mainColor: #FFA565;
+    --firstColor: #BCE3A5;
+    /* 第一輔助色 */
+    --secondColor: #3E43A4;
+    /* 第二輔助色 */
+    --lightWord: #FFFFFF;
+    --darkWord: #000000;
+    --boxShadow: 0 4px 4px #00000056;
+    --transition: all 300ms ease;
+}
+
+/* 除了起始進入與模擬選擇外的body都要套上這個背景色 */
+.mainPage {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--backgroundColor);
+}
+
+/* 起始進入相關設定 */
+.firstStart {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.backgroundLayer {
+    position: absolute;
+    inset: 0;
+    background: url("../img/直式黑板1.jpg") no-repeat center/cover;
+    z-index: 0;
+}
+.backgroundLayer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color 1s ease;
+}
+.firstStart .backgroundLayer.dim::after {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.prefect {
+    /* 值日生 */
+    color: var(--lightWord);
+    writing-mode: vertical-rl;
+    font-size: 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    transition: all 1s ease;
+    z-index: 15;
+}
+.prefect.toCorner{
+    bottom: 2em;
+    right: 6%;
+    top: auto;
+    left: auto;
+    transform: none;
+    transition: all 1s ease;
+}
+.container{
+    width: 92%;
+    max-width: 1440px;
+}
+.choosebox{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+.choose{
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5em;
+}
+.choose.active{
+    opacity: 1;
+    pointer-events: auto;
+}
+/* 淡入 */
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+/* 淡出 */
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+@keyframes fadeIn{
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut{
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.choosebox .title{
+    text-align: center;
+    color: var(--darkWord);
+    font-size: 2em;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.choosebox .word{
+    padding: 0.5em 1.2em;
+    color: var(--lightWord);
+    background-color: transparent;
+    border-radius: 100px;
+    font-size: 1.5em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.choosebox .title.show{
+    opacity: 1;
+}
+.choosebox .title.moveUp{
+    transform: translateY(-50px);
+}
+/* =========================reset頁面========================= */
+.capability{
+    width: 100%;
+    height: 100vh;
+    padding:  16vh 0 0 0;
+    background: url(../img/直式黑板1.jpg);
+    color: var(--darkWord);
+    text-align: center;
+}
+
+.capability .boxes{
+    width: 350px;
+    position: relative;
+    margin: auto;
+}
+
+.capability .boxes .chose{
+    width: 150px;
+    font-size: 1.5em;
+    margin: 0.5em;
+    background-color: transparent;
+    border-radius: 200px;
+    border: var(--lightWord) 1px solid;
+}
+
+/*==================header==================*/
+header{
+    width: 100%;
+    height: 64px;
+    background-color: var(--secondColor);
+    color: var(--mainColor);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 35;
+}
+header .container{
+    width: 98%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    background: url("../img/破繭Logo_Logo.png");
+    background-size: cover;
+    width: 114px;
+    height: 60px;
+    background-position: bottom;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.icons{
+    display: flex;
+    font-size: 60px;
+}
+.icons .line{
+    background-color: transparent;
+    color: var(--firstColor);
+    transition: var(--transition);
+}
+.icons .searchContainer{
+    display: flex;
+    align-items: center;
+    flex-flow: row-reverse;
+    position: relative;
+}
+.icons #searchInput{
+    width: 0;
+    opacity: 0;
+    transition: var(--transition);
+    padding: 0;
+    margin-right: 0.5em;
+    border: 1px solid var(--darkWord);
+    border-radius: 0.5em;
+    height: 3em;
+    overflow: hidden;
+}
+.icons .searchButton{
+    font-size: 45px;
+    background: none;
+    cursor: pointer;
+}
+.searchContainer.active #searchInput{
+    width: 200px;
+    opacity: 1;
+    padding: 0 10px;
+}
+/*==============麵包屑===============*/
+.bread{
+    width: 100%;
+    height: auto;
+    background-color: var(--lightWord);
+    color: var(--darkWord);
+    box-shadow: var(--boxShadow);
+    padding: 0.4em 0.6em;
+    position: fixed;
+    top: 64px;
+    left: 0px;
+    z-index: 34;
+}
+.bread .breadButton{
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+}
+.bread .firstLine{
+    display: flex;
+    gap: 0.5em;
+    justify-content: flex-start;
+}
+.bread .secondLine {
+    display: flex;
+    gap: 0.5em;
+    justify-content: flex-start;
+}
+/*======================page1-1、1-2、1-3、2-1、2-2、2-3=======================*/
+/* 上面的內容 */
+.pages {
+    width: 100%;
+    height: auto;
+}
+.pages .pictureBox {
+    width: 100%;
+    height: auto;
+}
+.pages .pictureBox .picture {
+    width: 100%;
+    height: 60vh;
+    background-size: cover;
+    background-position: center center;
+}
+.pages .pictureTitle {
+    text-align: justify;
+    padding: 0.4em 1em;
+}
+.page1-1 .picture {
+    background: url("../img/page1-1.jpg") no-repeat;
+}
+.page1-2 .picture {
+    background: url("../img/page1-2.jpg") no-repeat;
+}
+.page1-3 .picture {
+    background: url("../img/page1-3.jpg") no-repeat;
+}
+.page2-1 .picture {
+    background: url("../img/page2-1.jpg") no-repeat;
+}
+.page2-2 .picture {
+    background: url("../img/page2-2.jpg") no-repeat;
+}
+.page2-3 .picture {
+    background: url("../img/page2-3.jpg") no-repeat;
+}
+.pages .mainWords {
+    width: 90%;
+    position: relative;
+    margin: auto;
+}
+/* 下方的相關文章 */
+.similiar {
+    width: 100%;
+    padding: 2em 1em;
+}
+.similiar h2 {
+    text-align: center;
+    padding: 1em;
+}
+.similiar .cards {
+    max-width: 1200px;
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+}
+.similiar .cards .card {
+    width: 300px;
+    height: 350px;
+    background-color: var(--lightWord);
+    color: var(--darkWord);
+    border-radius: 25px;
+    box-shadow: var(--boxShadow);
+    transition: var(--transition);
+}
+.similiar .cards .card .cardPicture {
+    width: 260px;
+    height: 156px;
+    border-radius: 20px 20px 0 0;
+    margin: 20px auto;
+}
+.similiar .cards .card .cardWord {
+    width: 260px;
+    height: 125px;
+    position: relative;
+    margin: auto;
+}
+.similiar .cards .card a {
+    width: 100%;
+    padding-left: 75%;
+    transition: var(--transition);
+}
+/* 第一張卡片，只是針對「圖」修改 */
+.cardPicture1 {
+    background: url("../img/card冒牌者症候群.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第二張卡片，只是針對「圖」修改 */
+.cardPicture2 {
+    background: url("../img/剛畢業_不知道做什麼.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第三張卡片，只是針對「圖」修改 */
+.cardPicture3 {
+    background: url("../img/writing心理韌性.jpg");
+    background-size: cover;
+    background-position: center;
+}
+/* 第四張卡片，只是針對「圖」修改 */
+.cardPicture4 {
+    background: url("../img/writing4.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第五張卡片，只是針對「圖」修改 */
+.cardPicture5 {
+    background: url("../img/writing5.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第六張卡片，只是針對「圖」修改 */
+.cardPicture6 {
+    background: url("../img/writing6.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第七張卡片，只是針對「圖」修改 */
+.cardPicture7 {
+    background: url("../img/writing7.png.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第八張卡片，只是針對「圖」修改 */
+.cardPicture8 {
+    background: url("../img/writing8.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* 第九張卡片，只是針對「圖」修改 */
+.cardPicture9 {
+    background: url("../img/writing9.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* 只有在page2-1才有的東西 */
+.indicator {
+    width: 100%;
+    padding: 2em 1em;
+}
+.indicator h2 {
+    text-align: center;
+    color: var(--darkWord);
+}
+.indicator h3 {
+    text-align: center;
+    color: var(--darkWord);
+}
+.indicator p {
+    text-align: justify;
+    color: var(--darkWord);
+}
+.indicator input {
+    line-height: 1.8em;
+}
+.indicator .testbox1 input {
+    width: 100px;
+}
+.indicator .testbox2 input {
+    width: 100px;
+}
+.indicator .testbox{
+    width: 100%;
+    max-width: 1440px;
+    position: relative;
+    margin: auto;
+}
+/* 把input旁邊的數字箭頭隱藏 */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.allTestbox .sent {
+    position: relative;
+    padding: 0.5em 0.8em;
+    margin: 1em 0 1em calc(50% - 75px);
+    border-radius: 0.6em;
+    background-color: var(--secondColor);
+    color: var(--lightWord);
+}
+/*    writing page    */
+.writing {
+    width: 100%;
+    max-width: 1440px;
+    position: relative;
+    margin: auto;
+    padding: 100px 5% 2em 5%;
+}
+.writing h4 {
+    width: 100%;
+    height: auto;
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    margin: auto;
+    padding: 1em 0;
+}
+.writing .writingPicture {
+    width: 100%;
+    height: 40vh;
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    object-fit: cover;
+    background-position: center;
+}
+.writing .subject {
+    color: var(--darkWord);
+    text-align: justify;
+    padding: 2em 0;
+}
+/* writingPicture1~9個別影像 */
+.writingPicture1 {
+    background: url("../img/card冒牌者症候群.webp") no-repeat;
+}
+.writingPicture2 {
+    background: url("../img/剛畢業_不知道做什麼.jpg") no-repeat;
+    background-size: cover;
+    background-position: bottom bottom;
+}
+.writingPicture3 {
+    background: url("../img/writing心理韌性.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.writingPicture4 {
+    background: url("../img/writing4.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.writingPicture5 {
+    background: url("../img/writing5.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.writingPicture6 {
+    background: url("../img/writing6.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.writingPicture7 {
+    background: url("../img/writing7.png.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.writingPicture8 {
+    background: url("../img/writing8.webp") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.writingPicture9 {
+    background: url("../img/writing9.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* banner */
+.banner{
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+}
+.slides{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slides img{
+    width: 100%;
+    height: auto;
+    /* 自動依比例縮放 */
+    flex-shrink: 0;
+    object-fit: cover;
+    background-position: center;
+}
+/* banner的左右箭頭 */
+.prev,.next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--lightWord);
+    border: none;
+    font-size: 1.5em;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 10;
+}
+.prev{
+    left: 10px;
+}
+.next{
+    right: 10px;
+}
+/* 底部圓點 */
+.dots{
+    position: absolute;
+    bottom: 0.5em;
+    width: 100%;
+    text-align: center;
+}
+.dot{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dot.active{
+    background-color: white;
+}
+/* 相關影片 */
+.videos{
+    width: 90%;
+    position: relative;
+    margin: 1em auto;
+}
+.videos h2{
+    color: var(--darkWord);
+    text-align: center;
+    padding: 2em 0;
+}
+.video{
+    position: relative;
+    width: 100%;
+    /* 這是關鍵！設定底部內距，創造 16:9 的長寬比。
+     9 / 16 = 0.5625，所以是 56.25%。 */
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    margin: 1.5em 0;
+}
+.video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* 漫畫caricature */
+.allCaricature{
+    width: 94%;
+    position: relative;
+    margin: 1em auto;
+}
+.allCaricature h2{
+    padding: 2em 0 0 0;
+    text-align: center;
+}
+.allCaricature h3{
+    text-align: center;
+    padding-top: 1em;
+}
+.psychology{
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+}
+.change{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    margin: 1em 0;
+}
+.change img{
+    width: 100%;
+    height: auto;
+    /* 自動依比例縮放 */
+    flex-shrink: 0;
+    object-fit: cover;
+    background-position: center;
+}
+/* 漫畫的左右箭頭 */
+.moveLeft,.moveRight{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--lightWord);
+    border: none;
+    font-size: 1.5em;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 10;
+}
+.moveLeft{
+    left: 10px;
+}
+
+.moveRight{
+    right: 10px;
+}
+/* 職涯探索頁面 */
+.careerTitle{
+    position: relative;
+    margin: auto;
+    padding: 2em 0;
+    font-size: 2em;
+    text-align: center;
+    color: var(--darkWord);
+}
+.careerWord{
+    text-align: center;
+    margin-bottom: 2em;
+}
+.lifeline{
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    padding: 2em 0;
+    transition: var(--transition);
+}
+/* 時間軸主線：手機在左側 */
+.lifeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 4px;
+    background: var(--secondColor);
+}
+.lifeline-item {
+    position: relative;
+    width: 100%;
+    padding-left: 60px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+.lifeline-item .icon {
+    font-size: 24px;
+    background: white;
+    border: 2px solid var(--secondColor);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 34px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    cursor: pointer;
+}
+.lifeline-item .title {
+    font-weight: bold;
+    margin-bottom: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+.lifeline-item .content {
+    display: none;
+    margin-top: 10px;
+    background: #fff;
+    padding: 10px;
+    border-left: 4px solid var(--secondColor);
+    border-radius: 4px;
+}
+.lifeline-item.active .content {
+    display: block;
+}
+.files {
+    width: 80%;
+    position: relative;
+    margin: 2em auto;
+    text-align: justify;
+    line-height: 2.5em;
+    font-size: 1.5em;
+}
+.files a {
+    color: var(--secondColor);
+}
+/* 模擬選擇 */
+.imitation {
+    width: 100%;
+    min-height: 100vh;
+    background: url("../img/直視黑板2.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.questionbox {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5vh 0.5em 0.5em 0;
+}
+.step,
+.result {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5em;
+    color: var(--backgroundColor);
+}
+.step.active,.result.active {
+    display: flex;
+}
+.question {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 5em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+.question.show {
+    opacity: 1;
+}
+.question.moveUp {
+    transform: translateY(-10px);
+}
+.questionbox .step {
+    margin-top: 20vh;
+}
+button.answer {
+    margin: 1em;
+    padding: 0.5em 1.5em;
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--backgroundColor);
+    border-radius: 200px;
+    border: 1px solid var(--backgroundColor);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+button.answer.show-answer {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* 人格測驗 */
+.person {
+    width: 90%;
+    position: relative;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: var(--lightWord);
+    border-radius: 20px;
+    box-shadow: var(--boxShadow);
+}
+.person h2{
+    text-align: center;
+    color: var(--darkWord);
+}
+
+.person .testbox{
+    width: 100%;
+    border-bottom: 1px solid var(--darkWord);
+    padding: 2em 1em;
+}
+
+.person input{
+    margin: 0 1.5em;
+}
+
+.person .allright{
+    position: relative;
+    margin: 1em 0 1em calc(50% - 75px);
+    padding: 1em 0;
+    text-align: center;
+    width: 150px;
+    color: var(--lightWord);
+    background-color: var(--secondColor);
+    border-radius: 100px;
+}
+
+.person .allright{
+    position: relative;
+    margin: 1em 0 1em calc(50% - 75px);
+    padding: 1em 0;
+    text-align: center;
+    width: 150px;
+    color: var(--lightWord);
+    background-color: var(--secondColor);
+    border-radius: 100px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: box-shadow 0.1s ease, transform 0.1s ease; /* 添加平滑過渡效果 */
+}
+.person .allright:hover{
+    box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.3); /* 滑鼠懸停時加強陰影 */
+}
+.person .allright:active{
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+    padding-top: 1.1em;
+    padding-bottom: 0.9em; 
+}
+#resultPerson{
+    position: relative;
+    margin: 1em auto;
+    text-align: center;
+}
+/* 即時回答 */
+.chatbox {
+    position: relative;
+    margin: 1em auto;
+    width: 90%;
+    height: 500px;
+    background-color:var(--lightWord);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--boxShadow);
+    overflow: hidden;
+}
+.messages{
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+.inputSpace{
+    display: flex;
+    padding: 0.5em;
+    border: none;
+    outline: none;
+}
+.inputSpace input{
+    flex: 1;
+    padding: 0.5em;
+    border-radius: 6px;
+    border: 1px solid var(--darkWord);
+    outline: none;
+    margin: 0 0.5em 0 0;
+}
+.inputSpace button{
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 1em;
+    background-color:var(--secondColor);
+    color:var(--lightWord);
+    cursor: pointer;
+}
+.message{
+    max-width: 80%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    display: inline-block;
+    word-wrap: break-word;
+}
+.user{
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    margin-left: auto;
+}
+.bot{
+    align-self: flex-start;
+    background-color: #f8d7da;
+    margin-right: auto;
+}
+.user::after{
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: 10px;
+    border-width: 8px 0 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent #d1e7dd;
+}
+.bot::after{
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 10px;
+    border-width: 8px 8px 8px 0;
+    border-style: solid;
+    border-color: transparent #f8d7da transparent transparent;
+}
+
+.timestamp{
+    font-size: 0.7em;
+    color: #666;
+    margin-top: 4px;
+    text-align: right;
+}
+
+.status{
+    font-size: 0.7em;
+    color: #007AFF;
+    text-align: right;
+}
+
+.chatbox a{
+    color: #007AFF;
+    text-decoration: none;
+}
+
+/* 分享天地 */
+.share{
+    width: 96%;
+    position: relative;
+    margin: 1.5em auto;
+}
+.share h2{
+    color: var(--darkWord);
+    text-align: center;
+}
+.share .rightbox{
+    width: calc(90% - 64px);
+    position: relative;
+}
+.share .photo{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+.share .guest .photo{background-color: #9b55f7;}
+.share .reply .photo{background-color: #860707;}
+.share .guest{
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    height: auto;
+    padding: 1em;
+    border: 1px solid var(--darkWord);
+}
+.share .reply{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+    width: 90%;
+    height: auto;
+    padding: 1em;
+    margin: 1em 0 1em 10%;
+    border: 1px solid var(--darkWord);
+}
+.share .imgText{
+    display: flex;
+    gap: 1em;
+}
+.share .enterImg{
+    width: 80%;
+    height: calc(50vw + 15px);
+    position: relative;
+    margin: 1em auto;
+    background: url("../img/每天進步一點點公式.jpeg") no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.share .sign{
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 550;
+    color: var(--darkWord);
+}
+.share .time{
+    width: 100%;
+    font-size: 0.7em;
+    color: #686868;
+}
+.share .message{ 
+    width: 100%;
+    font-size: 1em;
+    line-height: 1.2em;
+    text-align: justify;
+}
+.leavebox{
+    width: 96%;
+    position: relative;
+    margin: 1em auto;
+}
+.leavebox h2{
+    text-align: center;
+    color: var(--darkWord);
+}
+.leavebox p{
+    color: var(--darkWord);
+    text-align: center;
+}
+.leavebox textarea{
+    width: 96%;
+    height: 200px;
+    line-height: 1.5em;
+    position: relative;
+    margin: 0.5em auto;
+    padding: 0.5em;
+    resize: none;
+}
+.leavebox input{
+    width: 96%;
+    position: relative;
+    margin: 0.5em auto;
+    padding: 0.5em;
+    line-height: 1.25;
+}
+.leavebox button{
+    width: 150px;
+    color: var(--lightWord);
+    background-color: var(--secondColor);
+    border-radius: 10px;
+    border: 0;
+    text-align: center;
+    font-size: 1em;
+    line-height: 2em;
+    position: relative;
+}
+.leavebox .bottomButton{
+    width: 100%;
+    position: relative;
+    margin: 1em 0 4em 0;
+}
+.leavebox button.sentOut{
+    position: absolute;
+    left: 0;
+}
+.leavebox button.sentMe{
+    position: absolute;
+    right: 4%;
+}
+/* 參考連結頁面 */
+.reference {
+    width: 100%;
+    height: 90vh;
+    max-width: 1200px;
+    padding: 6em 1em 2em 1em;
+}
+.reference h2 {
+    text-align: center;
+    color: var(--darkWord);
+}
+
+.reference p {
+    width: 90%;
+    text-align: justify;
+    line-height: 2em;
+    color: var(--darkWord);
+}
+.reference p a {
+    color: var(--secondColor);
+}
+/*  asideBlock  */
+.asideBlock {
+    height: auto;
+    position: fixed;
+    right: 1em;
+    transition: var(--transition);
+}
+.asideBlock .asideButtons {
+    /* 三個點點下去會出現的地方 */
+    position: fixed;
+    bottom: 12em;
+    right: 1.5em;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+}
+.asideBlock .asideButtons.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.asideBlock .asideButtons li a {
+    /* 三個點點下去出現的每個按鈕 */
+    line-height: 3.5em;
+    background-color: var(--mainColor);
+    color: var(--darkWord);
+    padding: 0.6em 0.8em;
+    margin: 1em 1.6em 1em 0;
+    font-size: 1em;
+    border-radius: 100px;
+    box-shadow: var(--boxShadow);
+    position: relative;
+    top: 0;
+}
+.asideBlock .asideButton {
+    /* 三個點在這邊 */
+    padding: 4.5px 2px;
+    font-size: 2.5em;
+    text-align: center;
+    color: var(--lightWord);
+    background-color: var(--mainColor);
+    border-radius: 50%;
+    border: 0;
+    position: fixed;
+    right: 1em;
+    bottom: 3.5em;
+    z-index: 30;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.asideBlock .asideButton.rotate {
+    transform: rotate(-270deg);
+}
+.dropdown p {
+    background-color: var(--mainColor);
+    color: var(--darkWord);
+    padding: 0.6em 0.8em;
+    margin: 1em 1.6em 1em 0;
+    font-size: 1em;
+    border-radius: 100px;
+    box-shadow: var(--boxShadow);
+}
+.dropdown {
+    /* 向左邊長出下拉選單的「按鈕本身」 */
+    position: relative;
+}
+.dropdownMenu {
+    /* 下拉選單的「區塊」 */
+    opacity: 0;
+    width: 150px;
+    border-radius: 10px;
+    padding: 1em 0 1em 1.5em;
+    /* transform: translateX(-10px); */
+    /* 往左稍微偏移 */
+    /* transition: opacity 0.3s ease, transform 0.3s ease; */
+    transition: var(--transition);
+    pointer-events: none;
+    position: absolute;
+    top: -150%;
+    left: -112%;
+    transform: translateY(50%);
+    background-color: var(--mainColor);
+    box-shadow: var(--boxShadow);
+    text-align: center;
+    white-space: nowrap;
+}
+.asideBlock .asideButtons .dropdownMenu li a{
+
+    padding: 1.5em 1.2em;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+.dropdownMenu.show {
+    /* 下拉選單出現 */
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+/* goTop */
+.goTop {
+    /* width: 50px;
+    height: 50px; */
+    padding: 2px;
+    font-size: 2.5em;
+    text-align: center;
+    color: var(--lightWord);
+    background-color: var(--mainColor);
+    border-radius: 50%;
+    border: 0;
+    box-shadow: var(--boxShadow);
+    position: fixed;
+    right: 1em;
+    bottom: 2em;
+    z-index: 30;
+    display: none;
+    /* 初始隱藏，往下捲動一段才出現 */
+    cursor: pointer;
+    transition: var(--transition);
+}
+.goTop.show{
+    display: block;
+    opacity: 1;
+}
+/* footer */
+footer{
+    width: 100%;
+    background-color: var(--darkWord);
+    color: var(--lightWord);
+    padding: 1.5em 1em;
+}
+footer .up {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    text-align: center;
+}
+footer .down {
+    text-align: center;
+    border-top: 1px solid var(--lightWord);
+    margin: 0.5em 0;
+}
+@media screen and (min-width:768px) {
+
+    /* index頁面相關設定 */
+    .firstStart .backgroundLayer {
+        background: url("../img/黑板1.png") no-repeat center/cover;
+    }
+    .choosebox .word:hover {
+        border: 1px solid var(--lightWord);
+    }
+    /* header */
+    header .logo:hover{
+        background: url("../img/破繭Logo_Logo變化.png");
+        background-size: cover;
+        width: 114px;
+        height: 60px;
+        background-position: bottom;
+        cursor: pointer;
+    }
+    header .line{
+        cursor: pointer;
+    }
+    header .line:hover{
+        color: #00B900;
+    }
+    /* reset頁面 */
+    .capability {
+        padding: 20vh 1em 0 1em;
+        background: url(../img/黑板1.png);
+        color: var(--lightWord);
+        text-align: center;
+    }
+    .capability .boxes {
+        width: 600px;
+        position: relative;
+        margin: 1em auto;
+    }
+    .capability .boxes .chose {
+        width: 150px;
+        font-size: 1.5em;
+        margin: 0.5em;
+        color: var(--lightWord);
+        background-color: transparent;
+        border-radius: 200px;
+        border: var(--lightWord) 1px solid;
+        transition: var(--transition);
+        cursor: pointer;
+    }
+    .capability .boxes .chose:hover{
+        border: var(--mainColor) 1px solid;
+    }
+    /* 麵包屑 */
+    .bread {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+    /* card */
+    .similiar .cards{
+        flex-flow: row wrap;
+    }
+    .similiar .cards .card:hover{
+        background-color: var(--firstColor);
+    }
+    .similiar .cards .card a:hover{
+        color: var(--secondColor);
+    }
+    /* pages 1-1~2-3 */
+    .pictureTitle{
+        position: relative;
+        width: 75%;
+        margin: 1em auto;
+    }
+    .pages .mainWords{
+        max-width: 1200px;
+    }
+    /* banner */
+    .banner{
+        height: 65vh;
+    }
+    .prev,.next{
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+    .dots{
+        bottom: 10px;
+    }
+    /* video */
+
+    /* 漫畫caricature */
+    .psychology{
+        position: relative;
+        margin: auto;
+        max-width: 80vh;
+        height: auto;
+        overflow: hidden;
+        width: auto;
+    }
+    /* 即時對話 */
+    .chatbox{
+        max-width: 1000px;
+    }
+    /* 模擬選擇 */
+    #q2,#q3 {
+        margin-top: calc(35vh - 3em);
+    }
+    button.answer:hover{
+        border: 1px solid var(--mainColor);
+    }
+    .imitation{
+        background: url(../img/黑板2.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+        padding: 5em 4em;
+        background-attachment: fixed;
+    }
+    .imitation .result p{
+        font-size: 1.5em;
+        line-height: 2em;
+        color: var(--lightWord);
+    }
+
+    /* 人格測驗 */
+    .person{
+        max-width: 1000px;
+    }
+
+    .person .testbox{
+        width: 90%;
+        position: relative;
+        margin: auto;
+        text-align: center;
+        line-height: 2em;
+    }
+
+    .person input{
+        margin: 1em 1.5em;
+    }
+
+    .person .allright{
+        position: relative;
+        margin: 1em 0 1em calc(50% - 75px);
+        padding: 1em 0;
+        text-align: center;
+        width: 150px;
+        color: var(--lightWord);
+        background-color: var(--secondColor);
+        border-radius: 100px;
+        border: 0;
+        cursor: pointer;
+    }
+    .person .allright:hover{
+        color: var(--darkWord);
+        background-color: var(--backgroundColor);
+    }
+    /* 職涯探索頁面 */
+    .lifeline{
+        max-width: 1200px;
+    }
+    .lifeline::before{
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .lifeline-item{
+        width: 50%;
+        padding: 20px 40px;
+    }
+    .lifeline-item.left{
+        left: 0;
+        text-align: right;
+    }
+    .lifeline-item.left .content{
+        text-align: justify;
+    }
+    .lifeline .left .title{
+        padding-right: 2em;
+    }
+    .lifeline-item.right{
+        left: 50%;
+        text-align: left;
+    }
+    .lifeline-item .icon{
+        top: 20px;
+        left: calc(100% - 1.5em);
+        transform: translateX(-50%);
+    }
+    .lifeline .right .icon{
+        left: 1em;
+    }
+    .lifeline-item:hover .content{
+        display: block;
+    }
+    .lifeine-item .content{
+        display: none;
+    }
+    /* 分享天地 */
+    .share{
+        max-width: 1440px;
+    }
+    .share .leavebox button{
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .share .leavebox button:hover{
+        background-color: var(--mainColor);
+        color: var(--darkWord);
+    }
+
+    /* 那三個點的一些電腦才有的設定 */
+    .asideBlock .asideButton{
+        opacity: 0.6;
+    }
+    .asideBlock .asideButton:hover{
+        opacity: 1;
+        background-color: var(--secondColor);
+    }
+    .asideBlock .asideButtons ul li a:hover{
+        color: var(--secondColor);
+    }
+    /* 至頂按鈕 */
+    .goTop.show{
+        opacity: 0.6;
+    }
+    .goTop:hover{
+        opacity: 1;
+        background-color: var(--secondColor);
+    }
+    /* footer */
+    footer {
+        padding: 2.5em 1.5em;
+    }
+    footer .up{
+        max-width: 1440px;
+        position: relative;
+        margin: auto;
+        flex-flow: row wrap;
+        /* text-align: justify; */
+        gap: 5%;
+    }
+    footer .up p{
+        width: 45%;
+        margin: 1.5em 0;
+    }
+    footer .down{
+        text-align: center;
+        border-top: 1px solid var(--lightWord);
+    }
+}
