@@ -301,7 +301,7 @@ function initFuture(){
     const q2Buttons = document.querySelectorAll("#q2 .answer");
     q2Buttons.forEach((button, j) => {
         button.addEventListener("click", () => {
-            if (j === 0) showResult("r1");
+            if(j === 0) showResult("r1");
             else if (j === 1) showResult("r2");
         });
     });
@@ -309,7 +309,7 @@ function initFuture(){
     // q3 → 顯示結果 r3~r6
     const q3Buttons = document.querySelectorAll("#q3 .answer");
     q3Buttons.forEach((button, j) => {
-        if (j < 4){
+        if(j < 4){
             button.addEventListener("click", () => showResult("r" + (j + 3)));
         }
     });
@@ -319,7 +319,7 @@ function initFuture(){
 function initAsideButtons(){
     const asideButton = document.querySelector(".asideButton");
     const asideButtons = document.querySelector(".asideButtons");
-    if (!asideButton || !asideButtons) return;
+    if(!asideButton || !asideButtons) return;
     asideButton.addEventListener("click", () => {
         asideButton.classList.toggle('rotate');
         asideButtons.classList.toggle('show');
@@ -351,50 +351,60 @@ function initDropdown(){
     const asideButton = document.querySelector(".asideButton");
     const asideButtons = document.querySelector(".asideButtons");
     const dropdowns = document.querySelectorAll(".dropdown");
-    if (!asideButton || !asideButtons) return;
-    // 1. 點擊右下角按鈕 → 展開/收合 asideButtons
+    if(!asideButton || !asideButtons || dropdowns.length === 0) return;
+
     asideButton.addEventListener("click", function () {
         asideButtons.classList.toggle("active");
     });
 
-    // 2. 裝置寬度 < 768px 判讀為click，其餘是hover
-    function setupMenuEvents(){
-        const isMobile = window.innerWidth < 768;
+    // 偵測螢幕寬度，實現RWD操作
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    function handleMenuEvents(b){
+        const isDesktop = b.matches;
 
         dropdowns.forEach(dropdown => {
             const menu = dropdown.querySelector(".dropdownMenu");
             const trigger = dropdown.querySelector("a");
 
-            // 先移除舊事件（避免多次綁定）
-            dropdown.replaceWith(dropdown.cloneNode(true));
-        });
+            // 移除所有可能的事件監聽器，避免重複綁定
+            trigger.removeEventListener("click", handleMobileClick);
+            dropdown.removeEventListener("mouseenter", handleDesktopEnter);
+            dropdown.removeEventListener("mouseleave", handleDesktopLeave);
 
-        // 重新抓取克隆後的元素（因為上面清事件）
-        const newDropdowns = document.querySelectorAll(".dropdown");
-        newDropdowns.forEach(dropdown => {
-            const menu = dropdown.querySelector(".dropdownMenu");
-            const trigger = dropdown.querySelector("a");
-            if(isMobile){
+            // 根據裝置類型綁定對應的事件
+            if (!isDesktop){
                 // 行動裝置 → 點擊開合
-                trigger.addEventListener("click", function(e){
-                    e.preventDefault(); // 阻止連結跳轉
-                    menu.classList.toggle("show");
-                });
-            }else{
-                // Web版 → hover進去出來來控制開闔
-                dropdown.addEventListener("mouseenter", function(){
-                    menu.classList.add("show");
-                });
-                dropdown.addEventListener("mouseleave", function(){
-                    menu.classList.remove("show");
-                });
+                trigger.addEventListener("click", handleMobileClick);
+            } else{
+                // 電腦版 → hover 進出控制開闔
+                dropdown.addEventListener("mouseenter", handleDesktopEnter);
+                dropdown.addEventListener("mouseleave", handleDesktopLeave);
+            }
+
+            // 定義事件處理函式
+            function handleMobileClick(event){
+                event.preventDefault();
+                menu.classList.toggle("show");
+            }
+            function handleDesktopEnter(){
+                menu.classList.add("show");
+            }
+            function handleDesktopLeave(){
+                menu.classList.remove("show");
             }
         });
     }
-    // 初始化 & 視窗大小變化時重新設定
-    setupMenuEvents();
-    window.addEventListener("resize", setupMenuEvents);
+
+    // 初始載入時執行一次
+    handleMenuEvents(mediaQuery);
+
+    // 監聽螢幕寬度變化，當符合/不符合 mediaQuery 時，重新執行事件設定
+    // mediaQuery.addListener(handleMenuEvents);
 }
+
+// 確保在 DOM 載入完成後執行
+document.addEventListener('DOMContentLoaded', initDropdown);
 
 // page2-2的轉職量表
 function initPage2for2(){
