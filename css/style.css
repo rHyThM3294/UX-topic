@@ -357,12 +357,12 @@ header .container{
     border-radius: 25px;
     box-shadow: var(--boxShadow);
     transition: var(--transition);
+    padding: 20px;
 }
 .similiar .cards .card .cardPicture{
     width: 260px;
     height: 156px;
     border-radius: 20px 20px 0 0;
-    margin: 20px auto;
 }
 .similiar .cards .card .cardWord{
     width: 260px;
@@ -370,11 +370,11 @@ header .container{
     position: relative;
     margin: auto;
 }
-.similiar .cards .card a{
-    width: 100%;
-    padding-left: 75%;
+.similiar .cards .card .linkarea{
+    text-align: right;
     transition: var(--transition);
 }
+
 /* 第一張卡片，只是針對「圖」修改 */
 .cardPicture1{
     background: url("../img/card冒牌者症候群.webp") no-repeat;
@@ -1158,8 +1158,8 @@ h2.answerForYou{
 .asideBlock .asideButtons{
     /* 三個點點下去會出現的地方 */
     position: fixed;
-    bottom: 12em;
-    right: 1.5em;
+    bottom: 10em;
+    right: 1em;
     z-index: 30;
     opacity: 0;
     pointer-events: none;
@@ -1184,7 +1184,7 @@ h2.answerForYou{
 .asideBlock .asideButton{
     /* 三個點在這邊 */
     padding: 4.5px 2px;
-    font-size: 2.5em;
+    font-size: 2em;
     text-align: center;
     color: var(--lightWord);
     background-color: var(--mainColor);
@@ -1234,7 +1234,6 @@ h2.answerForYou{
     white-space: nowrap;
 }
 .asideBlock .asideButtons .dropdownMenu li a{
-
     padding: 1.5em 1.2em;
     background-color: transparent;
     box-shadow: none;
@@ -1251,7 +1250,7 @@ h2.answerForYou{
     /* width: 50px;
     height: 50px; */
     padding: 2px;
-    font-size: 2.5em;
+    font-size: 2em;
     text-align: center;
     color: var(--lightWord);
     background-color: var(--mainColor);
