@@ -1154,6 +1154,7 @@ h2.answerForYou{
     position: fixed;
     right: 1em;
     transition: var(--transition);
+    z-index: 30;
 }
 .asideBlock .asideButtons{
     /* 三個點點下去會出現的地方 */
