@@ -762,6 +762,3 @@ function initNow(){
         }
     }
 }
-
-
-
